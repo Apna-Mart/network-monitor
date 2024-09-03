@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'maven-publish'
 }
+//apply plugin: 'com.kezong.fat-aar'
 
 android {
     namespace 'com.apnamart.network_monitor'
@@ -45,6 +46,21 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
+    implementation fileTree(dir: 'libs', include: '*.jar')
+//    // java dependency
+//    embed project(path: ':lib-java', configuration: 'default')
+//    // aar dependency
+//    embed project(path: ':lib-aar', configuration: 'default')
+//    // aar dependency
+//    embed project(path: ':lib-aar2', configuration: 'default')
+//    // local full aar dependency, just build in flavor1
+//    flavor1Embed project(path: ':lib-aar-local', configuration: 'default')
+//    // local full aar dependency, just build in debug
+//    debugEmbed(name: 'lib-aar-local2', ext: 'aar')
+//    // remote jar dependency
+//    embed 'com.google.guava:guava:20.0'
+//    // remote aar dependency
+//    embed 'com.facebook.fresco:fresco:1.12.0'
 }
 
 project.afterEvaluate {
