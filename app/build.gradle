@@ -30,6 +30,7 @@ android {
     kotlinOptions {
         jvmTarget = '18'
     }
+
 }
 
 group = 'com.github.vilas-apnamart'
@@ -65,11 +66,11 @@ dependencies {
     // remote aar dependency
 //    embed libs.fresco
 }
-
 project.afterEvaluate {
     publishing {
         publications {
             libraryProject(MavenPublication) {
+                from components.release
                 setGroupId 'com.github.vilas-apnamart'
                 setArtifactId 'network-monitor'
                 version '1.0.0'

@@ -1,7 +1,9 @@
 [versions]
-agp = "8.5.2"
+agp = "8.5.1"
 fatAarAndroid = "1.4.1"
 fresco = "1.12.0"
+gradle = "8.6.0"
+gradleVersion = "8.5.1"
 guava = "32.0.1-android"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -21,6 +23,8 @@ androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtim
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 fat-aar-android = { module = "com.github.aasitnikov:fat-aar-android", version.ref = "fatAarAndroid" }
 fresco = { module = "com.facebook.fresco:fresco", version.ref = "fresco" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+gradle-v851 = { module = "com.android.tools.build:gradle", version.ref = "gradleVersion" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
