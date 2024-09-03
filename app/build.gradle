@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'maven-publish'
 }
-apply plugin: 'com.kezong.fat-aar'
+//apply plugin: 'com.kezong.fat-aar'
 
 android {
     namespace 'com.apnamart.network_monitor'
@@ -62,7 +62,7 @@ dependencies {
     // local full aar dependency, just build in debug
 //    debugEmbed(name: 'lib-aar-local2', ext: 'aar')
     // remote jar dependency
-    embed libs.guava
+//    embed libs.guava
     // remote aar dependency
 //    embed libs.fresco
 }

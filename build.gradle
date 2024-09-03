@@ -12,7 +12,7 @@ buildscript {
         google() //Add this line.
     }
     dependencies {
-        classpath libs.fat.aar.android
+//        classpath libs.fat.aar
         classpath libs.gradle.v851
     }
 }
@@ -20,6 +20,7 @@ buildscript {
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.android.library) apply false
 }
 
 allprojects {
