@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id 'maven-publish'
 }
 
 android {
-    namespace 'com.sachin.mylibrary'
+    namespace 'com.apnamart.networkmodule'
     compileSdk 34
 
     defaultConfig {
