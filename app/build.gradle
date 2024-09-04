@@ -1,9 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'maven-publish'
 }
-//apply plugin: 'com.kezong.fat-aar'
 
 android {
     namespace 'com.apnamart.network_monitor'
@@ -33,10 +31,6 @@ android {
 
 }
 
-group = 'com.github.vilas-apnamart'
-
-version = '1.9.1'
-
 dependencies {
 
     implementation libs.androidx.core.ktx
@@ -51,30 +45,4 @@ dependencies {
     implementation libs.androidx.lifecycle.runtime.ktx
     // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
     implementation libs.androidx.lifecycle.process
-    // java dependency
-//    embed project(path: ':lib-java', configuration: 'default')
-    // aar dependency
-//    embed project(path: ':lib-aar', configuration: 'default')
-    // aar dependency
-//    embed project(path: ':lib-aar2', configuration: 'default')
-    // local full aar dependency, just build in flavor1
-//    flavor1Embed project(path: ':lib-aar-local', configuration: 'default')
-    // local full aar dependency, just build in debug
-//    debugEmbed(name: 'lib-aar-local2', ext: 'aar')
-    // remote jar dependency
-//    embed libs.guava
-    // remote aar dependency
-//    embed libs.fresco
-}
-project.afterEvaluate {
-    publishing {
-        publications {
-            libraryProject(MavenPublication) {
-                from components.release
-                setGroupId 'com.github.vilas-apnamart'
-                setArtifactId 'network-monitor'
-                version '1.9.1'
-            }
-        }
-    }
 }
