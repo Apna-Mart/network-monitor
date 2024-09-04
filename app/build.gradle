@@ -35,7 +35,7 @@ android {
 
 group = 'com.github.vilas-apnamart'
 
-version = '1.0.0'
+version = '1.9.1'
 
 dependencies {
 
@@ -73,7 +73,7 @@ project.afterEvaluate {
                 from components.release
                 setGroupId 'com.github.vilas-apnamart'
                 setArtifactId 'network-monitor'
-                version '1.0.0'
+                version '1.9.1'
             }
         }
     }

@@ -1,0 +1,8 @@
+# configuration file for building snapshots and releases with jitpack.io
+jdk:
+  - openjdk11
+before_install:
+  - ./scripts/prepareJitpackEnvironment.sh
+install:
+  - FILE="-Dfile=com-network-monitor.aar"
+  - mvn install:install-file $FILE -DgroupId=com.github.vilas-apnamart -DartifactId=network-monitor -Dversion=1.9.1 -Dpackaging=aar -DgeneratePom=true
