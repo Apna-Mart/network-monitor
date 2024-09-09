@@ -1,27 +1,32 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-        repositories {
-            maven {
-                setUrl("https://jitpack.io")
-                content {
-                    includeGroup("com.github.aasitnikov")
-                }
+        maven {
+            setUrl("https://jitpack.io")
+            content {
+                includeGroup("com.github.aasitnikov")
             }
         }
+
         mavenCentral()
         google() //Add this line.
     }
     dependencies {
-        classpath 'com.github.aasitnikov:fat-aar-android:1.4.1'
+//        classpath libs.fat.aar
+        classpath libs.gradle.v851
     }
 }
 
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.android.library) apply false
 }
 
-repositories {
-    google()
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
 }

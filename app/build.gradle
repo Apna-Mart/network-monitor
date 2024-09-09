@@ -1,22 +1,18 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'maven-publish'
 }
-//apply plugin: 'com.kezong.fat-aar'
 
 android {
     namespace 'com.apnamart.network_monitor'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.apnamart.network_monitor"
         minSdk 26
         targetSdk 34
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -26,51 +22,27 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
     }
+
 }
-
-group = 'com.github.vilas-apnamart'
-
-version = '1.0.0'
 
 dependencies {
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
     implementation fileTree(dir: 'libs', include: '*.jar')
-//    // java dependency
-//    embed project(path: ':lib-java', configuration: 'default')
-//    // aar dependency
-//    embed project(path: ':lib-aar', configuration: 'default')
-//    // aar dependency
-//    embed project(path: ':lib-aar2', configuration: 'default')
-//    // local full aar dependency, just build in flavor1
-//    flavor1Embed project(path: ':lib-aar-local', configuration: 'default')
-//    // local full aar dependency, just build in debug
-//    debugEmbed(name: 'lib-aar-local2', ext: 'aar')
-//    // remote jar dependency
-//    embed 'com.google.guava:guava:20.0'
-//    // remote aar dependency
-//    embed 'com.facebook.fresco:fresco:1.12.0'
-}
-
-project.afterEvaluate {
-    publishing {
-        publications {
-            libraryProject(MavenPublication) {
-                setGroupId 'com.github.vilas-apnamart'
-                setArtifactId 'network-monitor'
-                version '1.0.0'
-            }
-        }
-    }
+    // LifeCycle Aware Components
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.common.java8
+    implementation libs.androidx.lifecycle.runtime.ktx
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation libs.androidx.lifecycle.process
 }

@@ -1,8 +1,8 @@
-package com.apnamart.network_monitor
+package com.apnamart.networkmodule
 
-//import org.junit.Test
-//
-//import org.junit.Assert.*
+import org.junit.Test
+
+import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -10,8 +10,8 @@ package com.apnamart.network_monitor
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-//    @Test
-//    fun addition_isCorrect() {
-//        assertEquals(4, 2 + 2)
-//    }
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, 2 + 2)
+    }
 }
