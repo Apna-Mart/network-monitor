@@ -50,7 +50,7 @@ abstract class NetworkMonitorService : Service() {
             override fun onLost(network: Network) {
                 lastNetworkState.postValue(false)
                 val isNetworkConnected = checkNetworkAvailability(this@NetworkMonitorService)
-                if ((isNetworkConnected)) {
+                if (isNetworkConnected) {
                     return
                 }
 
