@@ -49,9 +49,14 @@ abstract class NetworkMonitorService : Service() {
 
             override fun onLost(network: Network) {
                 lastNetworkState.postValue(false)
+                val isNetworkConnected = checkNetworkAvailability(this@NetworkMonitorService)
+                if (isNetworkConnected) {
+                    return
+                }
+
                 onNetworkLost(
                     isAirplaneModeOn(this@NetworkMonitorService),
-                    checkNetworkAvailability(),
+                    false,
                     isWifiEnabled(this@NetworkMonitorService),
                     isMobileDataEnabled(this@NetworkMonitorService)
                 )
@@ -66,29 +71,35 @@ abstract class NetworkMonitorService : Service() {
         connectivityManager.registerNetworkCallback(networkRequest, networkCallback)
     }
 
-    private fun checkNetworkAvailability(): Boolean {
-        val activeNetwork = connectivityManager.activeNetwork
-        val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
-        val isConnected = networkCapabilities?.hasCapability(
-            NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
-        return isConnected
+    private fun checkNetworkAvailability(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
     private fun isAirplaneModeOn(context: Context): Boolean {
-        return Settings.Global.getInt(context.contentResolver, Settings.Global.AIRPLANE_MODE_ON, 0) != 0
+        return Settings.Global.getInt(
+            context.contentResolver,
+            Settings.Global.AIRPLANE_MODE_ON,
+            0
+        ) != 0
     }
 
     fun isWifiEnabled(context: Context): Boolean {
-        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiManager =
+            context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         return wifiManager.isWifiEnabled
     }
 
     fun isMobileDataEnabled(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             // Use ConnectivityManager for API 29+ to get network capabilities
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             return capabilities?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true
         } else {
             // Older API versions
