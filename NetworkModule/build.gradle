@@ -13,8 +13,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        versionCode 7
-        versionName "1.10.0"
+        versionCode 8
+        versionName "1.11.0"
 
     }
 
@@ -34,7 +34,7 @@ android {
 }
 group = 'com.github.vilas-apnamart'
 
-version = '1.10.0'
+version = '1.11.0'
 
 dependencies {
 
@@ -53,7 +53,7 @@ project.afterEvaluate {
                 from components.release
                 setGroupId 'com.github.vilas-apnamart'
                 setArtifactId 'network-monitor'
-                version '1.10.0'
+                version '1.11.0'
             }
         }
     }
