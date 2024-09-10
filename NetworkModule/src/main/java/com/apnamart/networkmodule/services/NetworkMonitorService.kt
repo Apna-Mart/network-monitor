@@ -1,9 +1,7 @@
 package com.apnamart.networkmodule.services
 
 import android.app.Service
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.os.IBinder
 import androidx.lifecycle.MutableLiveData
 import com.apnamart.networkmodule.network_monitor.InternetAvailableCallback
@@ -25,8 +23,6 @@ abstract class NetworkMonitorService : Service() {
     override fun onCreate() {
         super.onCreate()
         networkMonitor = NetworkMonitor(this)
-        networkMonitor?.connectivityManager =
-            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         registerNetworkCallback()
     }
 
@@ -34,9 +30,7 @@ abstract class NetworkMonitorService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        networkMonitor?.let {
-            it.connectivityManager.unregisterNetworkCallback(it.networkCallback)
-        }
+        networkMonitor?.unregisterCallback()
         networkMonitor = null
     }
 

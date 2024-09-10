@@ -11,12 +11,12 @@ import android.provider.Settings
 
 class NetworkMonitor(val context: Context) {
 
-    var connectivityManager: ConnectivityManager =
+    private var connectivityManager: ConnectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     lateinit var networkCallback: ConnectivityManager.NetworkCallback
 
     fun registerNetworkCallback(callback: InternetAvailableCallback) {
-        networkCallback = object : ConnectivityManager.NetworkCallback(){
+        networkCallback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
                 callback.onNetworkAvailable()
             }
@@ -87,6 +87,10 @@ class NetworkMonitor(val context: Context) {
                 return false
             }
         }
+    }
+
+    fun unregisterCallback() {
+        connectivityManager.unregisterNetworkCallback(networkCallback)
     }
 
 }
